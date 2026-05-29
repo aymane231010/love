@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --color-ink: #f5eef8;
+  --color-muted: #a89bb3;
+  --color-blush: #ff8ec7;
+  --color-lilac: #c9a0ff;
+  --color-glass: rgba(255, 255, 255, 0.06);
+  --color-glass-border: rgba(255, 255, 255, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100dvh;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: #050505;
+  color: var(--color-ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(255, 142, 199, 0.35);
+}
+
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #fff 0%, #ffb8e0 45%, #c9a0ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.option-chip {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.option-chip:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(255, 142, 199, 0.45);
+  box-shadow: 0 8px 24px rgba(255, 142, 199, 0.15);
+}
+
+.option-chip.selected {
+  border-color: rgba(255, 142, 199, 0.7);
+  background: rgba(255, 142, 199, 0.12);
+  box-shadow: 0 0 24px rgba(255, 142, 199, 0.2);
+}
+
+input.text-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1rem;
+  padding: 0.9rem 1.1rem;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input.text-input:focus {
+  border-color: rgba(201, 160, 255, 0.6);
+  box-shadow: 0 0 0 3px rgba(201, 160, 255, 0.15);
+}
+
+input.text-input::placeholder {
+  color: var(--color-muted);
+}
