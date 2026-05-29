@@ -2,6 +2,11 @@
   command = "npm run build"
   publish = "dist"
 
+  # Vite bakes env vars at build time — set them here for Netlify
+  [build.environment]
+    VITE_WHATSAPP_URL = "https://wa.me/212682321680"
+    VITE_INSTAGRAM_URL = "https://www.instagram.com/aymane_sa43prv?igsh=cGRxNm9wMG53NW52"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

@@ -24,8 +24,6 @@ export function FinalPage({ sessionId }: FinalPageProps) {
   const [lineIndex, setLineIndex] = useState(0);
   const [saving, setSaving] = useState(false);
 
-  const whatsappEnv = import.meta.env.VITE_WHATSAPP_URL?.trim();
-
   useEffect(() => {
     if (phase !== "buildup") return;
     if (lineIndex >= buildupLines.length - 1) {
@@ -43,12 +41,7 @@ export function FinalPage({ sessionId }: FinalPageProps) {
   }, [phase]);
 
   const handleOpenWhatsApp = () => {
-    const ok = openWhatsApp(whatsappEnv);
-    if (!ok) {
-      alert(
-        "WhatsApp link not configured. Set VITE_WHATSAPP_URL=https://wa.me/212682321680 in .env",
-      );
-    }
+    openWhatsApp();
   };
 
   const handleYes = async () => {
