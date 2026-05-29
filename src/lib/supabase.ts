@@ -1,7 +1,14 @@
 import { createClient } from "@supabase/supabase-js";
+import {
+  DEFAULT_SUPABASE_ANON_KEY,
+  DEFAULT_SUPABASE_URL,
+} from "../config/personalization";
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl =
+  import.meta.env.VITE_SUPABASE_URL?.trim() || DEFAULT_SUPABASE_URL;
+
+const supabaseAnonKey =
+  import.meta.env.VITE_SUPABASE_ANON_KEY?.trim() || DEFAULT_SUPABASE_ANON_KEY;
 
 export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
 
@@ -15,8 +22,8 @@ export async function saveAnswer(
   answer: string,
 ): Promise<{ ok: boolean; error?: string }> {
   if (!supabase) {
-    console.warn("[supabase] not configured — answer saved locally only");
-    return { ok: true };
+    console.warn("[supabase] not configured");
+    return { ok: false, error: "not configured" };
   }
 
   const { error } = await supabase.from("date_responses").upsert(
@@ -29,7 +36,7 @@ export async function saveAnswer(
   );
 
   if (error) {
-    console.error("[supabase]", error.message);
+    console.error("[supabase]", error.message, error);
     return { ok: false, error: error.message };
   }
 

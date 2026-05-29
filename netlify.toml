@@ -2,8 +2,9 @@
   command = "npm run build"
   publish = "dist"
 
-  # Vite bakes env vars at build time — set them here for Netlify
   [build.environment]
+    VITE_SUPABASE_URL = "https://giseulzkkulnpkvpotst.supabase.co"
+    VITE_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdpc2V1bHpra3VsbnBrdnBvdHN0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDIzMzksImV4cCI6MjA5NTYxODMzOX0.QeAtlCCo-142_9HcQV8zv1HKegwNRHuhI_pqb-qA7RU"
     VITE_WHATSAPP_URL = "https://wa.me/212682321680"
     VITE_INSTAGRAM_URL = "https://www.instagram.com/aymane_sa43prv?igsh=cGRxNm9wMG53NW52"
 
